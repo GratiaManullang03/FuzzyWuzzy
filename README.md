@@ -1,7 +1,3 @@
-Berikut adalah versi **README** yang telah dimodifikasi dan ditingkatkan untuk mencerminkan upgrade yang Anda lakukan pada fitur fuzzy search dengan toleransi 60% dan algoritma Levenshtein:
-
----
-
 # 🔍 Fuzzy Search Table — React + Vite Application
 
 A powerful and responsive table application built with **React**, **Vite**, **TailwindCSS**, **Fuzzysort.js**, and a custom **Levenshtein Distance** algorithm for highly tolerant fuzzy searching.
@@ -167,7 +163,3 @@ Files will be compiled to the `dist/` folder.
 ## 📌 Contribution
 
 Have suggestions or want to improve the search logic? PRs are welcome!
-
----
-
-Jika Anda ingin saya bantu menambahkan badge GitHub, lisensi, atau instruksi deployment (misalnya ke Netlify atau Vercel), beri tahu saya!
