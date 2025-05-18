@@ -1,0 +1,56 @@
+// src/utils/fuzzyUtils.js
+
+/**
+ * Fungsi utilitas untuk konversi antara persentase toleransi ke threshold fuzzysort
+ *
+ * Fuzzysort menggunakan nilai threshold dari -1000 (kecocokan ketat) hingga 0 (sangat toleran)
+ * Sedangkan kita menggunakan persentase 0-100% yang lebih intuitif untuk pengguna
+ */
+
+/**
+ * Mengkonversi persentase toleransi (0-100%) ke nilai threshold fuzzysort (-1000 hingga 0)
+ * @param {number} percentage - Nilai persentase antara 0-100
+ * @returns {number} - Nilai threshold untuk fuzzysort
+ */
+export const percentageToThreshold = (percentage) => {
+	// Validasi input
+	const validPercentage = Math.max(0, Math.min(100, percentage));
+	// Konversi: 0% => -1000, 100% => 0
+	return -1000 + validPercentage * 10;
+};
+
+/**
+ * Mengkonversi nilai threshold fuzzysort (-1000 hingga 0) ke persentase toleransi (0-100%)
+ * @param {number} threshold - Nilai threshold fuzzysort
+ * @returns {number} - Persentase toleransi
+ */
+export const thresholdToPercentage = (threshold) => {
+	// Validasi input
+	const validThreshold = Math.max(-1000, Math.min(0, threshold));
+	// Konversi: -1000 => 0%, 0 => 100%
+	return Math.round((validThreshold + 1000) / 10);
+};
+
+/**
+ * Helper untuk menentukan apakah kecocokan cukup bagus berdasarkan threshold
+ * @param {Object|null} fuzzyResult - Hasil dari fuzzysort.single()
+ * @param {number} threshold - Threshold yang digunakan
+ * @returns {boolean} - True jika kecocokan cukup bagus, false jika tidak
+ */
+export const isGoodMatch = (fuzzyResult, threshold) => {
+	if (!fuzzyResult) return false;
+	return fuzzyResult.score >= threshold;
+};
+
+/**
+ * Mendapatkan deskripsi tingkat toleransi berdasarkan persentase
+ * @param {number} percentage - Persentase toleransi
+ * @returns {string} - Deskripsi tingkat toleransi
+ */
+export const getToleranceDescription = (percentage) => {
+	if (percentage <= 20) return 'Sangat Ketat';
+	if (percentage <= 40) return 'Ketat';
+	if (percentage <= 60) return 'Sedang';
+	if (percentage <= 80) return 'Longgar';
+	return 'Sangat Longgar';
+};

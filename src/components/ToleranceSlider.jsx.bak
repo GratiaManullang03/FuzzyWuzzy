@@ -1,0 +1,46 @@
+// src/components/ToleranceSlider.jsx
+import { memo } from 'react';
+import PropTypes from 'prop-types';
+
+/**
+ * Komponen untuk mengatur tingkat toleransi fuzzy search
+ */
+const ToleranceSlider = ({ tolerance, onChange }) => {
+	return (
+		<div className="mb-4">
+			<div className="flex items-center justify-between mb-2">
+				<label
+					htmlFor="tolerance-slider"
+					className="block text-sm font-medium text-gray-700"
+				>
+					Toleransi Pencarian: {tolerance}%
+				</label>
+				<span className="text-xs text-gray-500">
+					(Semakin tinggi = hasil lebih banyak)
+				</span>
+			</div>
+			<input
+				id="tolerance-slider"
+				type="range"
+				min="0"
+				max="100"
+				step="5"
+				value={tolerance}
+				onChange={(e) => onChange(parseInt(e.target.value))}
+				className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+			/>
+			<div className="flex justify-between text-xs text-gray-500 mt-1">
+				<span>Ketat (0%)</span>
+				<span>Default (60%)</span>
+				<span>Longgar (100%)</span>
+			</div>
+		</div>
+	);
+};
+
+ToleranceSlider.propTypes = {
+	tolerance: PropTypes.number.isRequired,
+	onChange: PropTypes.func.isRequired,
+};
+
+export default memo(ToleranceSlider);

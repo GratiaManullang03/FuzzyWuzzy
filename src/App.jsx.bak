@@ -1,0 +1,32 @@
+import FuzzySearchTable from './components/FuzzySearchTable';
+import { employees } from './data/employees';
+
+function App() {
+	return (
+		<div className="bg-gray-50 min-h-screen">
+			<div className="container mx-auto px-4 py-8">
+				<div className="max-w-6xl mx-auto">
+					<div className="text-center mb-8">
+						<h1 className="text-3xl font-bold text-gray-800 mb-2">
+							Fuzzy Search Table
+						</h1>
+						<p className="text-gray-600">
+							Search across all columns with fuzzy matching
+						</p>
+					</div>
+
+					<FuzzySearchTable data={employees} />
+
+					<div className="text-center text-sm text-gray-500 mt-4">
+						<p>
+							Fuzzy search powered by Fuzzysort.js. Try searching for partial
+							matches like "mik" for "Mike".
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
+}
+
+export default App;
